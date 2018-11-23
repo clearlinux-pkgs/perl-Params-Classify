@@ -4,7 +4,7 @@
 #
 Name     : perl-Params-Classify
 Version  : 0.015
-Release  : 2
+Release  : 3
 URL      : https://cpan.metacpan.org/authors/id/Z/ZE/ZEFRAM/Params-Classify-0.015.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/Z/ZE/ZEFRAM/Params-Classify-0.015.tar.gz
 Summary  : 'argument type classification'

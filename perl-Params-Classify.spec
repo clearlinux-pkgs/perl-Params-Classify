@@ -4,13 +4,13 @@
 #
 Name     : perl-Params-Classify
 Version  : 0.015
-Release  : 11
+Release  : 12
 URL      : https://cpan.metacpan.org/authors/id/Z/ZE/ZEFRAM/Params-Classify-0.015.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/Z/ZE/ZEFRAM/Params-Classify-0.015.tar.gz
 Summary  : 'argument type classification'
 Group    : Development/Tools
 License  : Artistic-1.0-Perl
-Requires: perl-Params-Classify-lib = %{version}-%{release}
+Requires: perl-Params-Classify-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 
 %description
@@ -26,29 +26,31 @@ in C++).
 %package dev
 Summary: dev components for the perl-Params-Classify package.
 Group: Development
-Requires: perl-Params-Classify-lib = %{version}-%{release}
 Provides: perl-Params-Classify-devel = %{version}-%{release}
+Requires: perl-Params-Classify = %{version}-%{release}
 
 %description dev
 dev components for the perl-Params-Classify package.
 
 
-%package lib
-Summary: lib components for the perl-Params-Classify package.
-Group: Libraries
+%package perl
+Summary: perl components for the perl-Params-Classify package.
+Group: Default
+Requires: perl-Params-Classify = %{version}-%{release}
 
-%description lib
-lib components for the perl-Params-Classify package.
+%description perl
+perl components for the perl-Params-Classify package.
 
 
 %prep
 %setup -q -n Params-Classify-0.015
+cd %{_builddir}/Params-Classify-0.015
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -71,12 +73,12 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/Params/Classify.pm
 
 %files dev
 %defattr(-,root,root,-)
 /usr/share/man/man3/Params::Classify.3
 
-%files lib
+%files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/auto/Params/Classify/Classify.so
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/Params/Classify.pm
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/auto/Params/Classify/Classify.so
